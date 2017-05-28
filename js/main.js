@@ -6,10 +6,7 @@
 function Main() {
     // показать калькулятор
     DrawCalculator();
-
-    // build form and attach events
-
-    // event handlers
+    Calculate();
 }
 
 function DrawCalculator() {
@@ -55,27 +52,31 @@ function OnServiceSelected(event) {
         // если услуга не выбрана, спрятать опции (типы уборки)
         HideServiceOptions(parent);
     }
+    Calculate();
 }
 
 function DrawServiceOptions(service, parent) {
-    var div = $('<div class="options" />')
+    var div = $('<div class="options form-inline" />')
     // показать типы уборки для конкретного сервиса
     for (var i = 0; i < service.options.length; i++) {
         DrawInput(div, service.options[i]);
     }
     $(parent).append(div);
+    Calculate();
 }
 
 function DrawInput(parent, option) {
-    var div = $('<div />');
-    var span = $(`<span>${option.name} </span>`);
+    var div = $('<div class="form-group" />');
+    var span = $(`<label>${option.name}</label>`);
     var type = option.type;
-    var input = $(`<input type="text" value="1" />`);
+    var isCount = type === prices.cleaningByCount;
+    var input = isCount 
+        ? $(`<input type="number" value="1" class="form-control count" />`)
+        : $(`<input type="number" value="1" class="form-control" />`);
     input.data('stype', type);
     input.change(Calculate);
     $(div).append(span).append(input);
     $(parent).append(div);
-    Calculate();
 }
 
 function HideServiceOptions(parent) {
@@ -83,18 +84,29 @@ function HideServiceOptions(parent) {
 }
 
 function Calculate() {
-    // TODO: update calculate function
-    // it should include count and multiple by groups of options, like: count * {price1 + price 2 + price3}
     var total = 0;
-    var inputs = $('div.options input');
-    for (var i = 0; i < inputs.length; i++) {
-        var input = $(inputs[i]);
-        var value = input.val();
-        var type = input.data('stype');
-        if (value) {
-            total += GetCostByType(value, type);
-        }
-    }
+    var options = $('div.options');
+
+    options.each(function(){
+        var inputs = $(this).find('input');
+        var optionTotal = 0;
+        var optionCount = 1;
+
+        inputs.each(function(){
+            var value = $(this).val();
+            var type = $(this).data('stype');
+            if ($(this).hasClass('count')) {
+                optionCount = GetCostByType(value, type);
+                console.debug('count = %o', optionCount)
+            }
+            else {
+                optionTotal += GetCostByType(value, type);
+            }
+        });
+
+        total += optionTotal * optionCount;
+    });
+
     DrawTotalPrice(total);
 }
 
@@ -112,7 +124,7 @@ function GetPriceByValue(value, type) {
 }
 
 function DrawTotalPrice(total) {
-    $('#price').text(total);
+    $('#price').text(total.toFixed(2));
 }
 
 $(function(){

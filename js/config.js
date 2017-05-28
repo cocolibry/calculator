@@ -77,6 +77,13 @@ var services = [
     },
     {
         name: 'Уборка офисных помещений после ремонта',
-        types: []
+        types: [
+            {
+                name: 'Генеральная уборка',
+                options: [
+                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace }
+                ]
+            }
+        ]
     }
 ];
