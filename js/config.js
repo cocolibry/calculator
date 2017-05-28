@@ -32,45 +32,45 @@ var services = [
             {
                 name: 'Генеральная уборка',
                 options: [
-                    { name: 'Предполагаемое количество уборок в год', type: prices.cleaningByCount },
-                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace },
-                    { name: 'Количество санузлов', type: prices.cleaningByBaths },
-                    { name: 'Количество оконных проемов', type: prices.cleaningWindows }
+                    { name: 'Предполагаемое количество уборок в год', type: prices.cleaningByCount, default: 12 },
+                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace, default: 20 },
+                    { name: 'Количество санузлов', type: prices.cleaningByBaths, default: 1 },
+                    { name: 'Количество оконных проемов', type: prices.cleaningWindows, default: 2 }
                 ]
             },
             {
                 name: 'Утренняя ежедневная уборка',
                 options: [
-                    { name: 'Предполагаемое количество уборок в месяц', type: prices.cleaningByCount },
-                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace },
-                    { name: 'Количество санузлов', type: prices.cleaningByBaths }
+                    { name: 'Предполагаемое количество уборок в месяц', type: prices.cleaningByCount, default: 8 },
+                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace, default: 20 },
+                    { name: 'Количество санузлов', type: prices.cleaningByBaths, default: 1 }
                 ]
             },
             {
                 name: 'Ежедневная уборка в любое время',
                 options: [
-                    { name: 'Предполагаемое количество уборок в месяц', type: prices.cleaningByCount },
-                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace },
-                    { name: 'Количество санузлов', type: prices.cleaningByBaths }
+                    { name: 'Предполагаемое количество уборок в месяц', type: prices.cleaningByCount, default: 8 },
+                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace, default: 20 },
+                    { name: 'Количество санузлов', type: prices.cleaningByBaths, default: 1 }
                 ]
             },
             {
                 name: 'Мытье окон',
                 options: [
-                    { name: 'Количество одностворчатых окон', type: prices.cleaningWindows },
-                    { name: 'Количество двустворчатых окон', type: prices.cleaningWindows },
-                    { name: 'Количество трёхстворчатых окон', type: prices.cleaningWindows },
-                    { name: 'Количество москитных сеток', type: prices.cleaningWindows },
-                    { name: 'Количество балконных дверей', type: prices.cleaningWindows },
-                    { name: 'Требуется автовышка', type: prices.cleaningWindows }
+                    { name: 'Количество одностворчатых окон', type: prices.cleaningWindows, default: 1 },
+                    { name: 'Количество двустворчатых окон', type: prices.cleaningWindows, default: 1 },
+                    { name: 'Количество трёхстворчатых окон', type: prices.cleaningWindows, default: 0 },
+                    { name: 'Количество москитных сеток', type: prices.cleaningWindows, default: 0 },
+                    { name: 'Количество балконных дверей', type: prices.cleaningWindows, default: 0 },
+                    { name: 'Требуется автовышка', type: prices.cleaningWindows, default: 0 }
                 ]
             },
             {
                 name: 'Мытье витрин, фасадов, вывесок',
                 options: [
-                    { name: 'Площадь витрины', type: prices.cleaningWindows },
-                    { name: 'Площадь фасадов', type: prices.cleaningWindows },
-                    { name: 'Площадь вывесок', type: prices.cleaningWindows }
+                    { name: 'Площадь витрины', type: prices.cleaningWindows, default: 6 },
+                    { name: 'Площадь фасадов', type: prices.cleaningWindows, default: 0 },
+                    { name: 'Площадь вывесок', type: prices.cleaningWindows, default: 0 }
                 ]
             }
         ]
@@ -81,7 +81,7 @@ var services = [
             {
                 name: 'Генеральная уборка',
                 options: [
-                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace }
+                    { name: 'Общая площадь офисного помещения', type: prices.cleaningBySpace, default: 20 }
                 ]
             }
         ]

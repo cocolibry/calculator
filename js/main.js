@@ -69,12 +69,14 @@ function DrawInput(parent, option) {
     var div = $('<div class="form-group" />');
     var span = $(`<label>${option.name}</label>`);
     var type = option.type;
+    var defVal = option.default;
     var isCount = type === prices.cleaningByCount;
     var input = isCount 
         ? $(`<input type="number" value="1" class="form-control count" />`)
         : $(`<input type="number" value="1" class="form-control" />`);
     input.data('stype', type);
     input.change(Calculate);
+    input.val(defVal);
     $(div).append(span).append(input);
     $(parent).append(div);
 }
