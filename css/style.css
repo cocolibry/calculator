@@ -15,3 +15,8 @@
     font-weight: normal !important;
     margin: 0 10px 0 20px;
 }
+
+.header-template {
+    background: url(../img/logo.jpg) no-repeat left center;
+    background-size: 185px;
+}
